@@ -2,17 +2,6 @@
 device: tcp://172.16.13.51:28784    # 環境に合わせて変更
 configure_rx: true                 # ドライバが受信機設定を行う
 
-# stream_device:
-  # udp:
-  #   ip_server: "IPS1"
-  #   port: 28785
-  #   unicast_ip: "172.16.13.12"
-
-# ===== login ===== 
-login:
-  user: "sentan"
-  password: "muchachon"  
-
 
 # ===== 座標系・フレーム =====
 frame_id: gnss
@@ -23,51 +12,45 @@ vehicle_frame_id: base_link
 local_frame_id: odom
 insert_local_frame: false
 get_spatial_config_from_tf: false
-
 use_ros_axis_orientation: true      # ROS系(ENU, front-left-up)に合わせる :contentReference[oaicite:6]{index=6}
 
 # ===== 受信機タイプ =====
 receiver_type: ins                 # ★INS
 multi_antenna: true                # ★dual antenna
 
-# ===== Attitude 設定 ===== #
-att_offset:
-  heading: 90.0                    # degree (なぜがGUI画面上と値は正負逆になる)
-  pitch: 0.0
-
-# ===== INS 空間設定（※値は実機計測で埋める -> 後でスキャナで正確な値を計測）=====
+# ===== INS 空間設定（※値は実機計測で埋める）=====
 ins_spatial_config:
   imu_orientation:
-    theta_x: -90.0                  # digree (なぜがGUI画面上と値は正負逆になる)
-    theta_y: -90.0
+    theta_x: 0.0
+    theta_y: 0.0
     theta_z: 0.0
   ant_lever_arm:                   # IMU基準点 -> 主アンテナARP（m）
-    x: -0.298
-    y: 0.039
-    z: -0.082
+    x: 0.0
+    y: 0.0
+    z: 0.0
   poi_lever_arm:                   # IMU基準点 -> POI（m）
-    delta_x: 0.265
-    delta_y: 0.949
-    delta_z: -3.207
+    delta_x: 0.0
+    delta_y: 0.0
+    delta_z: 0.0
 
 ins_use_poi: true                  # tf を出すなら true が必要 :contentReference[oaicite:7]{index=7}
 ins_initial_heading: auto
 
 # ===== NTRIP（RTK補正）=====
-rtk_settings:
-  ntrip_1:
-    id: "NTR1"
-    caster: 172.16.1.200   # ←要置換
-    caster_port: 2101              # ←要置換
-    username: "sentan"               # ←要置換
-    password: "muchachon"               # ←要置換
-    mountpoint: "CREF0001_CMR_"            # ←要置換
-    version: "v2"
-    tls: false
-    fingerprint: ""
-    rtk_standard: "auto"
-    send_gga: "auto"
-    keep_open: true
+# rtk_settings:
+#   ntrip_1:
+#     id: "NTR1"
+#     caster: "caster.example.com"   # ←要置換
+#     caster_port: 2101              # ←要置換
+#     username: "user"               # ←要置換
+#     password: "pass"               # ←要置換
+#     mountpoint: "MOUNT"            # ←要置換
+#     version: "v2"
+#     tls: false
+#     fingerprint: ""
+#     rtk_standard: "auto"
+#     send_gga: "auto"
+#     keep_open: true
 
 # ===== publish（欲しいROSトピック）=====
 publish:
@@ -81,7 +64,7 @@ publish:
   insnavgeod: true                 # INS解（緯度経度等）
   imu: true                        # sensor_msgs/Imu（角速度・加速度・姿勢） :contentReference[oaicite:8]{index=8}
   localization: true               # nav_msgs/Odometry（位置+速度twist） :contentReference[oaicite:9]{index=9}
-  tf: true                         # tf を出す
+  tf: true                         # tf を出す（ins_use_poi=true 前提）
 
   # dual antenna 姿勢（必要に応じて）
   atteuler: true                   # Roll/Pitch/Yaw
@@ -90,13 +73,3 @@ publish:
   # その他は必要に応じて
   diagnostics: true
   aimplusstatus: true
-
-  pvtcartesian: true
-  pvtgeodetic: true
-
-
-polling_period:
-  pvt: 100   # ms
-  rest: 100   # ms
-
-custom_commands_file: "/home/sentan/shell/setup_asterx_rbi3"
