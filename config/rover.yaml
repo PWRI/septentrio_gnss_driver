@@ -81,7 +81,7 @@ publish:
   insnavgeod: true                 # INS解（緯度経度等）
   imu: true                        # sensor_msgs/Imu（角速度・加速度・姿勢） :contentReference[oaicite:8]{index=8}
   localization: true               # nav_msgs/Odometry（位置+速度twist） :contentReference[oaicite:9]{index=9}
-  tf: true                         # tf を出す
+  tf: false                         # tf を出す
 
   # dual antenna 姿勢（必要に応じて）
   atteuler: true                   # Roll/Pitch/Yaw
@@ -90,9 +90,13 @@ publish:
   # その他は必要に応じて
   diagnostics: true
   aimplusstatus: true
-
   pvtcartesian: true
   pvtgeodetic: true
+
+  gpsfix: true
+  pose: true
+  navsatfix: true
+
 
 
 polling_period:
