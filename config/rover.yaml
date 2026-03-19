@@ -100,7 +100,7 @@ publish:
 
 
 polling_period:
-  pvt: 100   # ms
-  rest: 100   # ms
+  pvt: 20   # ms
+  rest: 20   # ms
 
 custom_commands_file: "/home/sentan/shell/setup_asterx_rbi3"
