@@ -46,9 +46,9 @@ ins_spatial_config:
     y: 0.039
     z: -0.082
   poi_lever_arm:                   # IMU基準点 -> POI（m）
-    delta_x: 0.265
-    delta_y: 0.949
-    delta_z: -3.207
+    delta_x: 0.5324
+    delta_y: 0.58
+    delta_z: -3.092
 
 ins_use_poi: true                  # tf を出すなら true が必要 :contentReference[oaicite:7]{index=7}
 ins_initial_heading: auto
