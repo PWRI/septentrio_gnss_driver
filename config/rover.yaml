@@ -1,5 +1,5 @@
 # ===== 接続（例：USB RNDIS の TCP）=====
-device: tcp://172.16.13.51:28784    # 環境に合わせて変更
+device: tcp://192.168.20.74:28784    # 環境に合わせて変更
 configure_rx: true                 # ドライバが受信機設定を行う
 
 # stream_device:
@@ -47,7 +47,7 @@ ins_spatial_config:
     z: -0.082
   poi_lever_arm:                   # IMU基準点 -> POI（m）
     delta_x: 0.5324
-    delta_y: 0.58
+    delta_y: 0.54
     delta_z: -3.092
 
 ins_use_poi: true                  # tf を出すなら true が必要 :contentReference[oaicite:7]{index=7}
@@ -57,7 +57,7 @@ ins_initial_heading: auto
 rtk_settings:
   ntrip_1:
     id: "NTR1"
-    caster: 172.16.1.200   # ←要置換
+    caster: 192.168.1.80   # ←要置換
     caster_port: 2101              # ←要置換
     username: "sentan"               # ←要置換
     password: "muchachon"               # ←要置換
@@ -103,4 +103,4 @@ polling_period:
   pvt: 20   # ms
   rest: 20   # ms
 
-custom_commands_file: "/home/sentan/shell/setup_asterx_rbi3"
+custom_commands_file: "/home/bull/setup_asterx_rbi3"
